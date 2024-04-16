@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magic 8 Ball</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+      font-family: 'Arial', sans-serif;
+    }
+    .container {
+      text-align: center;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      background-color: #ffffff;
+    }
+    label {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 60%;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4caf50;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+    }
+    .response {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <label for="question">Ask the Magic 8 Ball a question:</label>
+  <input type="text" id="question" placeholder="Type your question...">
+  <button onclick="askMagic8Ball()">Ask</button>
+  <div class="response" id="magic8BallResponse"></div>
+</div>
+
+<script>
+  const responses = [
+    "It is certain.",
+    "Without a doubt.",
+    "Outlook good.",
+    "Reply hazy, try again later.",
+    "Ask again later.",
+    "Cannot predict now.",
+    "My sources say no.",
+    "Very doubtful."
+  ];
+
+  function askMagic8Ball() {
+    const questionInput = document.getElementById('question');
+    const responseDiv = document.getElementById('magic8BallResponse');
+    const userQuestion = questionInput.value.trim();
+
+    if (userQuestion) {
+      const response = getRandomResponse();
+      responseDiv.textContent = `Magic 8 Ball says: ${response}`;
+      questionInput.value = '';
+    } else {
+      responseDiv.textContent = 'Please enter a question before asking.';
+    }
+  }
+
+  function getRandomResponse() {
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    return responses[randomIndex];
+  }
+</script>
+
+</body>
+</html>
